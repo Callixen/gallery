@@ -1,0 +1,437 @@
+/* =============================================
+   CALLIXEN GALLERY — Clean Editorial
+   ============================================= */
+
+:root {
+  --bg: #050505;
+  --bg-sidebar: #080808;
+  --bg-content: #050505;
+  --text-primary: #e0ddd8;
+  --text-body: #9a958e;
+  --text-muted: #5a5650;
+  --text-dim: #333130;
+  --border: #181614;
+  --accent: #b8aa98;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --sidebar-left-w: 200px;
+  --sidebar-right-w: 240px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(184, 170, 152, 0.15);
+  color: var(--text-primary);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Mobile Header --- */
+.mobile-header {
+  display: none;
+}
+
+/* --- Layout --- */
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-left-w) 1fr var(--sidebar-right-w);
+  min-height: 100vh;
+}
+
+/* ======================
+   LEFT SIDEBAR
+   ====================== */
+.sidebar-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  overflow-y: auto;
+}
+
+.sidebar-left-inner {
+  padding: 3.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.brand {
+  margin-bottom: 4rem;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: block;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+a.brand-name:hover {
+  color: var(--accent);
+}
+
+.brand-tagline {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Nav */
+.sidebar-nav {
+  margin-bottom: 2.5rem;
+}
+
+.nav-heading {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.9rem;
+}
+
+.sidebar-nav a {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.25s ease;
+}
+
+.sidebar-nav a:hover {
+  color: var(--text-primary);
+}
+
+.sidebar-nav a.nav-active {
+  color: var(--text-primary);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.sidebar-footer p {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+/* ======================
+   CENTER CONTENT
+   ====================== */
+.content {
+  padding: 3.5rem 5rem 8rem;
+  max-width: 740px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content-header {
+  margin-bottom: 4rem;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.page-intro {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 480px;
+}
+
+/* --- Entries --- */
+.entry {
+  margin-bottom: 0;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.entry:first-of-type {
+  border-top: 1px solid var(--border);
+}
+
+.entry.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.entry-time {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  margin-bottom: 0.9rem;
+}
+
+.entry-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.entry-body p {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-body);
+  line-height: 1.85;
+  margin-bottom: 0.9rem;
+}
+
+.entry-body p:last-child {
+  margin-bottom: 0;
+}
+
+.entry-body em {
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+/* ======================
+   RIGHT SIDEBAR
+   ====================== */
+.sidebar-right {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-left: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  overflow-y: auto;
+}
+
+.sidebar-right-inner {
+  padding: 3.5rem 1.5rem;
+}
+
+.index-heading {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.index-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.25rem;
+}
+
+.index-list {
+  list-style: none;
+}
+
+.index-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.45rem 0;
+  transition: color 0.25s ease;
+  line-height: 1.4;
+}
+
+.index-title {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  flex: 1;
+  min-width: 0;
+  transition: color 0.25s ease;
+}
+
+.index-time {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.index-link:hover .index-title {
+  color: var(--accent);
+}
+
+.index-link.active .index-title {
+  color: var(--text-primary);
+}
+
+/* ======================
+   RESPONSIVE
+   ====================== */
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: var(--sidebar-left-w) 1fr;
+  }
+  .sidebar-right {
+    display: none;
+  }
+  .content {
+    padding: 3rem 3.5rem 6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+
+  .mobile-header .brand-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0;
+  }
+
+  .mobile-header .brand-tagline {
+    font-family: var(--font-serif);
+    font-size: 0.62rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+
+  .mobile-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: var(--text-muted);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn.open span:first-child {
+    transform: rotate(45deg) translate(2px, 2px);
+  }
+
+  .mobile-menu-btn.open span:last-child {
+    transform: rotate(-45deg) translate(2px, -2px);
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 150;
+    transform: translateX(-100%);
+    transition: transform 0.4s var(--ease-out);
+    border-right: 1px solid var(--border);
+  }
+
+  .sidebar-left.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-right {
+    display: none;
+  }
+
+  .content {
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .entry-title {
+    font-size: 1.25rem;
+  }
+
+  .entry-body p {
+    font-size: 0.85rem;
+  }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
